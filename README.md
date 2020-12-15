@@ -29,54 +29,36 @@ O programa deve imprimir uma única linha contendo o resultado que deve ser exib
 Exemplos de Entrada  | Exemplos de Saída
 ------------- | -------------
 3 | 6
-
 2 * |
-
 1 * |
-
 3 * |
 
 
 Exemplos de Entrada  | Exemplos de Saída
 ------------- | -------------
 3 | 1
-
-2 / |
-
-3 / |
-
-6 * |
+2 / |  
+3 / | 
+6 * | 
 
 Exemplos de Entrada  | Exemplos de Saída
 ------------- | -------------
 11 | 387420489
-
 9 * | 
-
 9 * | 
-
 9 * | 
-
 9 * |
-
 9 * |
-
 9 * |
-
 9 * |
-
 9 * |
-
 9 * |
-
 9 * |
-
 9 / |
 
 
-
 ```javascript
-//SOLUÇAO 1
+//SOLUCAO 1
 /*Entrada de dados sera pelo gets()*/
 const calcular = {
     /*O numero de entrada é convertido para number() e depois da divisão retorna um valor float (parseFloat())*/
