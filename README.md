@@ -1,7 +1,7 @@
-## Treinamento Digital Innovation One - Exercicio - Produto e Divisão
+## Exercicio - Produto e Divisão (CAlcular Divisao e Multiplicação)
 
-O exercicio publicado é referente ao treinamento do BOOTCAMP - Desenvolvedor NodeJS -  Solução de problemas com JavaScript.
-(https://digitalinnovation.one)
+O exercicio publicado é referente ao treinamento do BOOTCAMP - Desenvolvedor NodeJS -  Solução de problemas com JavaScript.(https://digitalinnovation.one)
+
 
 #### Descrição do Desafio:
 
@@ -33,7 +33,6 @@ Exemplos de Entrada  | Exemplos de Saída
 1 * |
 3 * |
 
-
 Exemplos de Entrada  | Exemplos de Saída
 ------------- | -------------
 3 | 1
@@ -57,13 +56,18 @@ Exemplos de Entrada  | Exemplos de Saída
 9 / |
 
 
+Update:
+16-03-2021 Criado funções utilizando constantes (const). Criado funções com uma a duas funcionalidades. Ajustado nomenclatura das constantes e variaveis (Uso de conceitos CleanCode). Limitado o acesso das variaveis apenas para função que esta utilizando a variavel (uso apenas dentro do escopo da função). */
+
+
 ```javascript
 //SOLUCAO 1
-/*Entrada de dados sera pelo gets()*/
-const calcular = {
-    /*O numero de entrada é convertido para number() e depois da divisão retorna um valor float (parseFloat())*/
+const regex = /^([0-9]) *([*/])/;
+const imprimirResultado = (valorAcc) => console.log(typeof valorAcc == 'bigint' ? valorAcc : parseInt(valorAcc));
+const calcularDivisaoMultiplicacao = {
+    /*O 'numero' de entrada é convertido para number() e depois da divisão retorna um valor float (parseFloat())*/
     '/': (valorAcumulado, numero) => { return parseFloat(Number(valorAcumulado) / Number(numero)); },
-    /*O numero de entrada é convertido para number(), depois da multiplicaçao, verifica se o resultado
+    /*O 'numero' de entrada é convertido para number(), depois da multiplicaçao, verifica se o resultado
     é maior ou igual a números inteiros (MAX_SAFE_INTEGER). Ou seja, verifica de maneira segura, se o 
     número é um valor muito grande, além do valor limite seguro dos inteiros. */
     /*Apos verificar, se o resultado for verdadeiro, multiplica as entradas usando o BigInt(), utilizado
@@ -71,23 +75,59 @@ const calcular = {
     '*': (valorAcumulado, numero) => { return Number(valorAcumulado) * Number(numero) >= Number.MAX_SAFE_INTEGER ? BigInt(valorAcumulado) * BigInt(numero) : valorAcumulado * numero; }
 };
 
-do {
-    /*Será utilzado o numero 1 para iniciar o calculo*/
-    valorAcc = 1;
-    /*O if () valida se a quantidade de Linhas da Entrada é um numero valido*/
-    if (!(quantLinhaEntrada = parseInt(gets()))) break;
+(function (entradaDeDados){
+  do {
+    /*Será utilIzado o numero 1 para iniciar o calculo*/
+    let valorAcc = 1;
+    /*O if() valida se a quantidade de Linhas da Entrada é um numero valido*/
+    if (!entradaDeDados) break;
 
-    while (quantLinhaEntrada--) {
-        /*(gets()).match()  - A cada entrada será verificado se a string tem apenas numeros + operador
-         de multiplicação ou operador divisão.*/
-        /*  [, num, operador] - O resultado é uma string que se torna um array. Então é feito atribuição 
-        via desestruturação (destructuring assignment) do array, distribuindo os valores do array nas variaveis*/
-        [, num, operador] = (gets()).match(/^([0-9]) *([*/])/);
-        /*A função calcular é chamada. è enviado o operador + o conteudo da variavel valorAcc + 
-        o numero que veio da entrada (num) no processo de destructuring assignment . O retorno 
-        será acumulado na variavel valorAcc.*/
-        valorAcc = calcular[operador](valorAcc, num);
+    while (entradaDeDados--) {
+      /*(gets()).match()  - A cada entrada, será verificado se a string tem apenas numeros + operador
+      de multiplicação ou operador divisão.*/
+      /*  [, num, operador] - O resultado é uma string que se torna um array. Então é feito atribuição 
+      via desestruturação (destructuring assignment) do array, distribuindo os valores do array nas constantes*/
+      const [, num, operador] = (gets()).match(regex);
+      /*A função calcular é chamada. è enviado o operador + o conteudo da variavel valorAcc + 
+      o numero que veio da entrada (num) no processo de destructuring assignment . O retorno 
+      será acumulado na variavel valorAcc.*/
+      valorAcc = calcularDivisaoMultiplicacao[operador](valorAcc, num);
     }
-    console.log(typeof valorAcc == 'bigint' ? valorAcc : parseInt(valorAcc));
+    imprimirResultado(valorAcc);    
+  } while (entradaDeDados = gets());
+})(gets());
+
+
+
+//SOLUCAO 2
+const calcular = {
+   /*O 'numero' de entrada é convertido para number() e depois da divisão retorna um valor float (parseFloat())*/
+  '/': (valorAcumulado, numero) => { return parseFloat(Number(valorAcumulado) / Number(numero)); },
+  /*O 'numero' de entrada é convertido para number(), depois da multiplicaçao, verifica se o resultado
+    é maior ou igual a números inteiros (MAX_SAFE_INTEGER). Ou seja, verifica de maneira segura, se o 
+    número é um valor muito grande, além do valor limite seguro dos inteiros. */
+    /*Apos verificar, se o resultado for verdadeiro, multiplica as entradas usando o BigInt(), utilizado
+    para numeros grandes*/
+  '*': (valorAcumulado, numero) => { return Number(valorAcumulado) * Number(numero) >= Number.MAX_SAFE_INTEGER ? BigInt(valorAcumulado) * BigInt(numero) : valorAcumulado * numero; }
+};
+
+do {
+  /*Será utilzado o numero 1 para iniciar o calculo*/
+  valorAcc = 1;
+  /*O if() valida se a quantidade de Linhas da Entrada (gets()) é um numero valido*/
+  if (!(quantLinhaEntrada = parseInt(gets()))) break;
+
+  while (quantLinhaEntrada--) {
+      /*(gets()).match()  - A cada entrada será verificado se a string tem apenas numeros + operador
+       de multiplicação ou operador divisão.*/
+      /*  [, num, operador] - O resultado é uma string que se torna um array. Então é feito atribuição 
+      via desestruturação (destructuring assignment) do array, distribuindo os valores do array nas variaveis*/
+      [, num, operador] = (gets()).match(/^([0-9]) *([*/])/);
+      /*A função calcular é chamada. è enviado o operador + o conteudo da variavel valorAcc + 
+      o numero que veio da entrada (num) no processo de destructuring assignment . O retorno 
+      será acumulado na variavel valorAcc.*/
+      valorAcc = calcular[operador](valorAcc, num);
+  }
+  console.log(typeof valorAcc == 'bigint' ? valorAcc : parseInt(valorAcc));
 } while (true);
 ```
