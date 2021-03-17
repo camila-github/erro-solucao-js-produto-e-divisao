@@ -1,4 +1,4 @@
-## Exercicio - Produto e Divisão (CAlcular Divisao e Multiplicação)
+## Exercicio - Produto e Divisão (Calcular Divisao e Multiplicação)
 
 O exercicio publicado é referente ao treinamento do BOOTCAMP - Desenvolvedor NodeJS -  Solução de problemas com JavaScript.(https://digitalinnovation.one)
 
